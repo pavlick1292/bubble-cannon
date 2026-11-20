@@ -35,7 +35,7 @@
 
   section{padding:46px 0;border-top:1px solid var(--line)}
   h2{font-family:'Fredoka One',cursive;font-size:32px;margin-bottom:8px;font-weight:400}
-  .sub{color:var(--dim);margin-bottom:26px;max-width:760px}
+  .sub{color:var(--dim);margin-bottom:26px;max-width:780px}
 
   .herochar{display:grid;grid-template-columns:360px 1fr;gap:36px;align-items:center}
   .herochar .art{position:relative;background:radial-gradient(circle at 50% 45%,rgba(63,182,255,.22),rgba(63,182,255,0) 62%),var(--card);
@@ -55,16 +55,23 @@
 
   .worlds{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   .worlds figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
-  .worlds img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .3s}
+  .worlds img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .3s}
   .worlds figure:hover img{transform:scale(1.05)}
   .worlds figcaption{padding:8px 10px;font-size:14px;color:var(--dim)}
 
-  .foes{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-  .foes figure{margin:0;background:radial-gradient(circle at 50% 30%,#233043,#161b22 70%);border:1px solid var(--line);border-radius:14px;padding:10px 8px 8px;text-align:center}
-  .foes img{width:100%;aspect-ratio:1;object-fit:contain}
-  .foes figcaption{font-size:13px;color:var(--dim);margin-top:4px}
-  .foes.bosses figure{background:radial-gradient(circle at 50% 30%,#3a2230,#1a1218 70%);border-color:#4a2b3a}
-  .foes.bosses figcaption{color:#e0a9b8}
+  .world-row{border-top:1px solid var(--line);padding:18px 0}
+  .world-row:first-of-type{border-top:0}
+  .world-row h3{font-family:'Fredoka One',cursive;font-weight:400;font-size:20px;margin-bottom:10px}
+  .world-row h3 span{color:var(--dim);font-family:'Nunito',sans-serif;font-size:14px;font-weight:400;margin-left:8px}
+  .row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .row figure{margin:0;background:radial-gradient(circle at 50% 30%,#233043,#161b22 70%);border:1px solid var(--line);
+              border-radius:14px;padding:8px;text-align:center;position:relative}
+  .row figure.boss{background:radial-gradient(circle at 50% 30%,#3a2230,#1a1218 70%);border-color:#4a2b3a}
+  .row img{width:100%;aspect-ratio:1;object-fit:contain}
+  .row figcaption{font-size:13px;color:var(--dim);margin-top:4px}
+  .row figure.boss figcaption{color:#e0a9b8}
+  .tag{position:absolute;top:6px;left:6px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;
+       background:#e0447b;color:#fff;border-radius:6px;padding:2px 6px}
 
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
@@ -80,7 +87,7 @@
     .herochar{grid-template-columns:1fr}
     .shots{grid-template-columns:1fr}
     .worlds{grid-template-columns:repeat(2,1fr)}
-    .foes{grid-template-columns:repeat(3,1fr)}
+    .row{grid-template-columns:repeat(3,1fr)}
     .cards{grid-template-columns:1fr}
     nav a{display:none}
     .soon{margin-left:0;font-size:13px;padding:7px 12px}
@@ -109,11 +116,11 @@
     <p class="sub">Главный герой — круглый пузырьковый танк на гусеницах. Стреляет мыльными пузырями, катится по мирам и собирает монеты на прокачку ствола.</p>
     <div class="herochar">
       <div class="art">
-        <img src="art/cannon_base.png" alt="Пушок — пузырьковая пушка">
+        <img src="art/cannon_base.png" alt="Пушок — пузырьковая пушка" loading="lazy">
         <div class="skins">
-          <figure><img src="art/cannon_base.png" alt="Обычный Пушок"><figcaption>Обычный</figcaption></figure>
-          <figure><img src="art/cannon_base_blue.png" alt="Синий Пушок"><figcaption>Синий</figcaption></figure>
-          <figure><img src="art/cannon_base_red.png" alt="Красный Пушок"><figcaption>Красный</figcaption></figure>
+          <figure><img src="art/cannon_base.png" alt="Обычный Пушок" loading="lazy"><figcaption>Обычный</figcaption></figure>
+          <figure><img src="art/cannon_base_blue.png" alt="Синий Пушок" loading="lazy"><figcaption>Синий</figcaption></figure>
+          <figure><img src="art/cannon_base_red.png" alt="Красный Пушок" loading="lazy"><figcaption>Красный</figcaption></figure>
         </div>
       </div>
       <div>
@@ -121,7 +128,7 @@
           <li>Стреляет мыльными пузырями — чем выше уровень, тем сильнее залп.</li>
           <li>Ездит на гусеницах: нажмите на самого Пушка, чтобы переехать без выстрела.</li>
           <li>Мыло, ракеты и бутылки-бонусы прямо на поле боя.</li>
-          <li>Прокачка в магазине: скорострельность, размер и скорость пузырей, урон, ракеты.</li>
+          <li>Прокачка в магазине: скорострельность, размер и скорость пузырей, урон, броня, ракеты.</li>
         </ul>
       </div>
     </div>
@@ -129,72 +136,167 @@
 
   <section id="screens">
     <h2>Скриншоты</h2>
-    <p class="sub">Так игра выглядит на телефоне — бой с боссом, магазин улучшений и главное меню.</p>
+    <p class="sub">Так игра выглядит на телефоне — бой, магазин улучшений и ежедневный бонус.</p>
     <div class="shots">
-      <figure><div class="phone"><img src="img/phone-play.png" alt="Бой с боссом"></div><figcaption>Бой с боссом</figcaption></figure>
-      <figure><div class="phone"><img src="img/phone-shop.png" alt="Магазин улучшений"></div><figcaption>Магазин улучшений</figcaption></figure>
-      <figure><div class="phone"><img src="img/phone-menu.png" alt="Главное меню"></div><figcaption>Главное меню</figcaption></figure>
+      <figure><div class="phone"><img src="img/phone-play.png" alt="Бой" loading="lazy"></div><figcaption>Бой</figcaption></figure>
+      <figure><div class="phone"><img src="img/phone-shop.png" alt="Магазин улучшений" loading="lazy"></div><figcaption>Магазин улучшений</figcaption></figure>
+      <figure><div class="phone"><img src="img/phone-bonus.png" alt="Ежедневный бонус" loading="lazy"></div><figcaption>Ежедневный бонус</figcaption></figure>
     </div>
   </section>
 
   <section id="worlds">
     <h2>12 миров</h2>
-    <p class="sub">Каждый мир — свой фон, свои враги и свой босс. От лесной опушки до космоса и замка.</p>
+    <p class="sub">Каждый мир — три фона, свои враги и свой босс. Десять уровней на мир, всего 120.</p>
     <div class="worlds">
-      <figure><img src="art/bg_les_day.jpg" alt="Лес"><figcaption>Лес</figcaption></figure>
-      <figure><img src="art/bg_peshera_1.jpg" alt="Пещеры"><figcaption>Пещеры</figcaption></figure>
-      <figure><img src="art/bg_lug_day.jpg" alt="Луг"><figcaption>Луг</figcaption></figure>
-      <figure><img src="art/bg_zima_day.jpg" alt="Зима"><figcaption>Зима</figcaption></figure>
-      <figure><img src="art/bg_vulkan_1.jpg" alt="Вулкан"><figcaption>Вулкан</figcaption></figure>
-      <figure><img src="art/bg_kosmos_day.jpg" alt="Космос"><figcaption>Космос</figcaption></figure>
-      <figure><img src="art/bg_zamok_day.jpg" alt="Замок"><figcaption>Замок</figcaption></figure>
-      <figure><img src="art/bg_podvoda_day.jpg" alt="Подводный мир"><figcaption>Подводный мир</figcaption></figure>
-      <figure><img src="art/bg_sladosti_day.jpg" alt="Сладости"><figcaption>Сладости</figcaption></figure>
-      <figure><img src="art/bg_pustynya_day.jpg" alt="Пустыня"><figcaption>Пустыня</figcaption></figure>
-      <figure><img src="art/bg_boloto_day.jpg" alt="Болото"><figcaption>Болото</figcaption></figure>
-      <figure><img src="art/bg_plyazh_day.jpg" alt="Пляж"><figcaption>Пляж</figcaption></figure>
+      <figure><img src="art/bg1.jpg" alt="Луг" loading="lazy"><figcaption>Луг</figcaption></figure>
+      <figure><img src="art/bg_les_day.jpg" alt="Лес" loading="lazy"><figcaption>Лес</figcaption></figure>
+      <figure><img src="art/bg_plyazh_day.jpg" alt="Пляж" loading="lazy"><figcaption>Пляж</figcaption></figure>
+      <figure><img src="art/bg_boloto_1.jpg" alt="Болото" loading="lazy"><figcaption>Болото</figcaption></figure>
+      <figure><img src="art/bg4.jpg" alt="Зима" loading="lazy"><figcaption>Зима</figcaption></figure>
+      <figure><img src="art/bg5.jpg" alt="Пустыня" loading="lazy"><figcaption>Пустыня</figcaption></figure>
+      <figure><img src="art/bg_peshera_1.jpg" alt="Кристальная пещера" loading="lazy"><figcaption>Кристальная пещера</figcaption></figure>
+      <figure><img src="art/bg_vulkan_1.jpg" alt="Лавовый вулкан" loading="lazy"><figcaption>Лавовый вулкан</figcaption></figure>
+      <figure><img src="art/bg7.jpg" alt="Подводный мир" loading="lazy"><figcaption>Подводный мир</figcaption></figure>
+      <figure><img src="art/bg9.jpg" alt="Сладости" loading="lazy"><figcaption>Сладости</figcaption></figure>
+      <figure><img src="art/bg_kosmos_1.jpg" alt="Космос" loading="lazy"><figcaption>Космос</figcaption></figure>
+      <figure><img src="art/bg_zamok_1.jpg" alt="Замок" loading="lazy"><figcaption>Замок</figcaption></figure>
     </div>
   </section>
 
   <section id="foes">
-    <h2>Враги</h2>
-    <p class="sub">48 видов монстров — по четыре на мир. Вот кто встретится Пушку на пути.</p>
-    <div class="foes">
-      <figure><img src="art/les_mosquito.png" alt="Москит"><figcaption>Москит</figcaption></figure>
-      <figure><img src="art/les_spider.png" alt="Паук"><figcaption>Паук</figcaption></figure>
-      <figure><img src="art/les_snake.png" alt="Змея"><figcaption>Змея</figcaption></figure>
-      <figure><img src="art/les_mushroom.png" alt="Гриб"><figcaption>Гриб</figcaption></figure>
-      <figure><img src="art/pesh_golem.png" alt="Голем"><figcaption>Голем</figcaption></figure>
-      <figure><img src="art/pesh_bat.png" alt="Летучая мышь"><figcaption>Мышь</figcaption></figure>
-      <figure><img src="art/pod_squid.png" alt="Кальмар"><figcaption>Кальмар</figcaption></figure>
-      <figure><img src="art/pod_shark.png" alt="Акула"><figcaption>Акула</figcaption></figure>
-      <figure><img src="art/zim_yeti.png" alt="Йети"><figcaption>Йети</figcaption></figure>
-      <figure><img src="art/vulk_spirit.png" alt="Дух вулкана"><figcaption>Дух вулкана</figcaption></figure>
-      <figure><img src="art/kos_alien.png" alt="Пришелец"><figcaption>Пришелец</figcaption></figure>
-      <figure><img src="art/zam_knight.png" alt="Рыцарь"><figcaption>Рыцарь</figcaption></figure>
-      <figure><img src="art/slad_cupcake.png" alt="Кекс"><figcaption>Кекс</figcaption></figure>
-      <figure><img src="art/pus_scorpion.png" alt="Скорпион"><figcaption>Скорпион</figcaption></figure>
-      <figure><img src="art/lug_bee.png" alt="Пчела"><figcaption>Пчела</figcaption></figure>
-      <figure><img src="art/pl_crab.png" alt="Краб"><figcaption>Краб</figcaption></figure>
-      <figure><img src="art/bol_frog.png" alt="Жаба"><figcaption>Жаба</figcaption></figure>
-      <figure><img src="art/bol_turtle.png" alt="Черепаха"><figcaption>Черепаха</figcaption></figure>
+    <h2>Враги по мирам</h2>
+    <p class="sub">По четыре монстра на мир и босс в конце. Это спрайты из текущей сборки игры.</p>
+
+    <div class="world-row">
+      <h3>Луг <span>босс: Пчела-королева</span></h3>
+      <div class="row">
+        <figure><img src="art/lug_bee.png" alt="Пчела" loading="lazy"><figcaption>Пчела</figcaption></figure>
+        <figure><img src="art/lug_beetle.png" alt="Жук" loading="lazy"><figcaption>Жук</figcaption></figure>
+        <figure><img src="art/lug_slug.png" alt="Слизень" loading="lazy"><figcaption>Слизень</figcaption></figure>
+        <figure><img src="art/lug_hopper.png" alt="Кузнечик" loading="lazy"><figcaption>Кузнечик</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/lug_boss.png" alt="Пчела-королева" loading="lazy"><figcaption>Пчела-королева</figcaption></figure>
+      </div>
     </div>
 
-    <h2 style="margin-top:40px">Боссы</h2>
-    <p class="sub">Финальный враг каждого мира — здоровенный и с характером.</p>
-    <div class="foes bosses">
-      <figure><img src="art/les_boss.png" alt="Босс леса"><figcaption>Леший</figcaption></figure>
-      <figure><img src="art/pesh_boss.png" alt="Босс пещер"><figcaption>Пещерный</figcaption></figure>
-      <figure><img src="art/pod_boss.png" alt="Босс подводного мира"><figcaption>Глубинный</figcaption></figure>
-      <figure><img src="art/zim_boss.png" alt="Босс зимы"><figcaption>Ледяной</figcaption></figure>
-      <figure><img src="art/vulk_boss.png" alt="Босс вулкана"><figcaption>Вулкана</figcaption></figure>
-      <figure><img src="art/kos_boss.png" alt="Босс космоса"><figcaption>Космический</figcaption></figure>
-      <figure><img src="art/zam_boss.png" alt="Босс замка"><figcaption>Замковый</figcaption></figure>
-      <figure><img src="art/slad_boss.png" alt="Босс сладостей"><figcaption>Сладкий</figcaption></figure>
-      <figure><img src="art/pus_boss.png" alt="Босс пустыни"><figcaption>Пустынный</figcaption></figure>
-      <figure><img src="art/bol_boss.png" alt="Босс болота"><figcaption>Болотный</figcaption></figure>
-      <figure><img src="art/pl_boss.png" alt="Босс пляжа"><figcaption>Пляжный</figcaption></figure>
-      <figure><img src="art/lug_boss.png" alt="Босс луга"><figcaption>Луговой</figcaption></figure>
+    <div class="world-row">
+      <h3>Лес <span>босс: Древень</span></h3>
+      <div class="row">
+        <figure><img src="art/les_spider.png" alt="Паук" loading="lazy"><figcaption>Паук</figcaption></figure>
+        <figure><img src="art/les_snake.png" alt="Змея" loading="lazy"><figcaption>Змея</figcaption></figure>
+        <figure><img src="art/les_mushroom.png" alt="Гриб" loading="lazy"><figcaption>Гриб</figcaption></figure>
+        <figure><img src="art/les_mosquito.png" alt="Москит" loading="lazy"><figcaption>Москит</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/les_boss.png" alt="Древень" loading="lazy"><figcaption>Древень</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="world-row">
+      <h3>Пляж <span>босс: Краб-король</span></h3>
+      <div class="row">
+        <figure><img src="art/pl_crab.png" alt="Краб" loading="lazy"><figcaption>Краб</figcaption></figure>
+        <figure><img src="art/pl_octopus.png" alt="Осьминог" loading="lazy"><figcaption>Осьминог</figcaption></figure>
+        <figure><img src="art/pl_jelly.png" alt="Медуза" loading="lazy"><figcaption>Медуза</figcaption></figure>
+        <figure><img src="art/pl_starfish.png" alt="Морская звезда" loading="lazy"><figcaption>Морская звезда</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/pl_boss2.png" alt="Краб-король" loading="lazy"><figcaption>Краб-король</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="world-row">
+      <h3>Болото <span>босс: Болотный дух</span></h3>
+      <div class="row">
+        <figure><img src="art/bol_dragonfly.png" alt="Стрекоза" loading="lazy"><figcaption>Стрекоза</figcaption></figure>
+        <figure><img src="art/bol_frog.png" alt="Жаба" loading="lazy"><figcaption>Жаба</figcaption></figure>
+        <figure><img src="art/bol_leech.png" alt="Пиявка" loading="lazy"><figcaption>Пиявка</figcaption></figure>
+        <figure><img src="art/bol_turtle.png" alt="Черепаха" loading="lazy"><figcaption>Черепаха</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/bol_boss.png" alt="Болотный дух" loading="lazy"><figcaption>Болотный дух</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="world-row">
+      <h3>Зима <span>босс: Йети</span></h3>
+      <div class="row">
+        <figure><img src="art/zim_penguin.png" alt="Пингвин" loading="lazy"><figcaption>Пингвин</figcaption></figure>
+        <figure><img src="art/zim_snowman.png" alt="Снеговик" loading="lazy"><figcaption>Снеговик</figcaption></figure>
+        <figure><img src="art/zim_walrus.png" alt="Морж" loading="lazy"><figcaption>Морж</figcaption></figure>
+        <figure><img src="art/zim_yeti.png" alt="Йети" loading="lazy"><figcaption>Йети</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/zim_boss.png" alt="Босс зимы" loading="lazy"><figcaption>Йети-вожак</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="world-row">
+      <h3>Пустыня <span>босс: Скорпион-хан</span></h3>
+      <div class="row">
+        <figure><img src="art/pus_cactus.png" alt="Кактус" loading="lazy"><figcaption>Кактус</figcaption></figure>
+        <figure><img src="art/pus_lizard.png" alt="Ящерица" loading="lazy"><figcaption>Ящерица</figcaption></figure>
+        <figure><img src="art/pus_scorpion.png" alt="Скорпион" loading="lazy"><figcaption>Скорпион</figcaption></figure>
+        <figure><img src="art/pus_vulture.png" alt="Стервятник" loading="lazy"><figcaption>Стервятник</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/pus_boss.png" alt="Скорпион-хан" loading="lazy"><figcaption>Скорпион-хан</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="world-row">
+      <h3>Кристальная пещера <span>босс: Кристальный дракон</span></h3>
+      <div class="row">
+        <figure><img src="art/pesh_beetle.png" alt="Жук" loading="lazy"><figcaption>Жук</figcaption></figure>
+        <figure><img src="art/pesh_bat.png" alt="Мышь" loading="lazy"><figcaption>Мышь</figcaption></figure>
+        <figure><img src="art/pesh_golem.png" alt="Голем" loading="lazy"><figcaption>Голем</figcaption></figure>
+        <figure><img src="art/pesh_slime.png" alt="Слизень" loading="lazy"><figcaption>Слизень</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/pesh_boss.png" alt="Кристальный дракон" loading="lazy"><figcaption>Кристальный дракон</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="world-row">
+      <h3>Лавовый вулкан <span>босс: Магма-голем</span></h3>
+      <div class="row">
+        <figure><img src="art/vulk_slime.png" alt="Слизень" loading="lazy"><figcaption>Слизень</figcaption></figure>
+        <figure><img src="art/vulk_beetle.png" alt="Жук" loading="lazy"><figcaption>Жук</figcaption></figure>
+        <figure><img src="art/vulk_spirit.png" alt="Дух" loading="lazy"><figcaption>Дух</figcaption></figure>
+        <figure><img src="art/vulk_snake.png" alt="Змея" loading="lazy"><figcaption>Змея</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/vulk_boss.png" alt="Магма-голем" loading="lazy"><figcaption>Магма-голем</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="world-row">
+      <h3>Подводный мир <span>босс: Мегалодон</span></h3>
+      <div class="row">
+        <figure><img src="art/pod_puffer.png" alt="Рыба-шар" loading="lazy"><figcaption>Рыба-шар</figcaption></figure>
+        <figure><img src="art/pod_seahorse.png" alt="Морской конёк" loading="lazy"><figcaption>Морской конёк</figcaption></figure>
+        <figure><img src="art/pod_shark.png" alt="Акула" loading="lazy"><figcaption>Акула</figcaption></figure>
+        <figure><img src="art/pod_squid.png" alt="Кальмар" loading="lazy"><figcaption>Кальмар</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/pod_boss.png" alt="Мегалодон" loading="lazy"><figcaption>Мегалодон</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="world-row">
+      <h3>Сладости <span>босс: Пряничный монстр</span></h3>
+      <div class="row">
+        <figure><img src="art/slad_bear.png" alt="Медведь" loading="lazy"><figcaption>Медведь</figcaption></figure>
+        <figure><img src="art/slad_cane.png" alt="Карамель" loading="lazy"><figcaption>Карамель</figcaption></figure>
+        <figure><img src="art/slad_cupcake.png" alt="Кекс" loading="lazy"><figcaption>Кекс</figcaption></figure>
+        <figure><img src="art/slad_lolli.png" alt="Леденец" loading="lazy"><figcaption>Леденец</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/slad_boss.png" alt="Пряничный монстр" loading="lazy"><figcaption>Пряничный монстр</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="world-row">
+      <h3>Космос <span>босс: НЛО-босс</span></h3>
+      <div class="row">
+        <figure><img src="art/kos_alien.png" alt="Пришелец" loading="lazy"><figcaption>Пришелец</figcaption></figure>
+        <figure><img src="art/kos_squid.png" alt="Кальмар" loading="lazy"><figcaption>Кальмар</figcaption></figure>
+        <figure><img src="art/kos_star.png" alt="Звезда" loading="lazy"><figcaption>Звезда</figcaption></figure>
+        <figure><img src="art/kos_ufo.png" alt="НЛО" loading="lazy"><figcaption>НЛО</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/kos_boss.png" alt="НЛО-босс" loading="lazy"><figcaption>НЛО-босс</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="world-row">
+      <h3>Замок <span>босс: Рыцарь-скелет</span></h3>
+      <div class="row">
+        <figure><img src="art/zam_bat.png" alt="Мышь" loading="lazy"><figcaption>Мышь</figcaption></figure>
+        <figure><img src="art/zam_ghost.png" alt="Призрак" loading="lazy"><figcaption>Призрак</figcaption></figure>
+        <figure><img src="art/zam_knight.png" alt="Рыцарь" loading="lazy"><figcaption>Рыцарь</figcaption></figure>
+        <figure><img src="art/zam_skel.png" alt="Скелет" loading="lazy"><figcaption>Скелет</figcaption></figure>
+        <figure class="boss"><span class="tag">босс</span><img src="art/zam_boss.png" alt="Рыцарь-скелет" loading="lazy"><figcaption>Рыцарь-скелет</figcaption></figure>
+      </div>
     </div>
   </section>
 
