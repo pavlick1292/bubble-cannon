@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bubble Cannon — пузырьковая пушка Пушок против монстров</title>
-<meta name="description" content="Bubble Cannon — аркада для телефона и браузера: 12 миров, 120 уровней, 48 врагов и 12 боссов. Герой — пушка Пушок, стреляющая мыльными пузырями.">
+<meta name="description" content="Bubble Cannon — аркада для Android: 12 миров, 120 уровней, 48 врагов и 12 боссов. Герой — пушка Пушок, стреляющая мыльными пузырями.">
 <meta property="og:title" content="Bubble Cannon — игра про пушку Пушка">
-<meta property="og:image" content="https://pavlick1292.github.io/bubble-cannon/img/phone-menu.png">
+<meta property="og:image" content="https://pavlick1292.github.io/bubble-cannon/img/phone-play.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#0d1117;--card:#161b22;--card2:#1b2330;--line:#2a3441;--text:#e6edf3;--dim:#9aa7b4;--accent:#3fb6ff;--accent2:#ffd166;--accent3:#ff8a5c}
+  :root{--ink:#0d1117;--card:#161b22;--line:#2a3441;--text:#e6edf3;--dim:#9aa7b4;--accent:#3fb6ff;--accent2:#ffd166}
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--ink);color:var(--text);font-family:'Nunito',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
   a{color:var(--accent);text-decoration:none}
@@ -21,14 +21,14 @@
   .logo span{color:var(--accent)}
   nav a{color:var(--dim);margin-left:22px;font-size:15px}
   nav a:hover{color:var(--text)}
-  nav a.cta{color:#04121c;background:var(--accent);padding:9px 16px;border-radius:10px;font-weight:700}
+  .soon{display:inline-block;background:rgba(63,182,255,.12);border:1px solid rgba(63,182,255,.45);color:var(--accent);
+        padding:9px 16px;border-radius:10px;font-weight:700;font-size:15px;margin-left:22px}
 
   .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:60px 0 50px}
   .hero h1{font-family:'Fredoka One',cursive;font-size:52px;line-height:1.06;margin-bottom:16px;font-weight:400}
   .hero h1 em{font-style:normal;color:var(--accent2)}
   .hero p{color:var(--dim);font-size:18px;margin-bottom:26px;max-width:520px}
-  .btn{display:inline-block;background:var(--accent);color:#04121c;font-weight:700;font-size:19px;padding:15px 32px;border-radius:14px;transition:transform .15s}
-  .btn:hover{transform:translateY(-2px)}
+  .btn{display:inline-block;background:var(--accent);color:#04121c;font-weight:700;font-size:19px;padding:15px 32px;border-radius:14px}
   .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);margin-left:10px;font-size:16px;padding:14px 22px}
   .phone{margin:0 auto;width:min(300px,80%);border-radius:34px;padding:10px;background:linear-gradient(#1d2530,#111721);box-shadow:0 0 0 1px #2a3441,0 30px 60px rgba(0,0,0,.6)}
   .phone img{border-radius:26px}
@@ -40,13 +40,18 @@
   .herochar{display:grid;grid-template-columns:360px 1fr;gap:36px;align-items:center}
   .herochar .art{position:relative;background:radial-gradient(circle at 50% 45%,rgba(63,182,255,.22),rgba(63,182,255,0) 62%),var(--card);
                 border:1px solid var(--line);border-radius:24px;padding:22px}
-  .herochar .art img{width:100%;filter:drop-shadow(0 18px 30px rgba(0,0,0,.5))}
+  .herochar .art > img{width:100%;filter:drop-shadow(0 18px 30px rgba(0,0,0,.5))}
   .skins{display:flex;gap:14px;margin-top:14px}
   .skins figure{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;text-align:center}
   .skins figcaption{color:var(--dim);font-size:13px;margin-top:4px}
-  ul.feat{list-style:none;margin-top:18px;display:grid;gap:10px}
+  ul.feat{list-style:none;margin-top:6px;display:grid;gap:10px}
   ul.feat li{color:var(--dim);padding-left:24px;position:relative}
   ul.feat li::before{content:"●";color:var(--accent);position:absolute;left:0}
+
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .shots figure{margin:0}
+  .shots .phone{width:100%}
+  .shots figcaption{color:var(--dim);font-size:14px;text-align:center;margin-top:10px}
 
   .worlds{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   .worlds figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
@@ -73,10 +78,12 @@
     .hero{grid-template-columns:1fr;padding-top:36px}
     .hero h1{font-size:38px}
     .herochar{grid-template-columns:1fr}
+    .shots{grid-template-columns:1fr}
     .worlds{grid-template-columns:repeat(2,1fr)}
     .foes{grid-template-columns:repeat(3,1fr)}
     .cards{grid-template-columns:1fr}
-    nav a:not(.cta){display:none}
+    nav a{display:none}
+    .soon{margin-left:0;font-size:13px;padding:7px 12px}
   }
 </style>
 </head>
@@ -84,17 +91,17 @@
 <div class="wrap">
   <header>
     <div class="logo">Bubble <span>Cannon</span></div>
-    <nav><a href="#pushok">Пушок</a><a href="#worlds">Миры</a><a href="#foes">Враги</a><a class="cta" href="game/play.html">Играть</a></nav>
+    <nav><a href="#pushok">Пушок</a><a href="#worlds">Миры</a><a href="#foes">Враги</a><a href="#screens">Скриншоты</a><span class="soon">Скоро в RuStore</span></nav>
   </header>
 
   <div class="hero">
     <div>
       <h1>Пушок стреляет<br>пузырями<br>по <em>монстрам</em></h1>
-      <p>Аркада для телефона и браузера: 12 миров, 120 уровней, 48 врагов и 12 боссов. Ничего скачивать не нужно — нажмите «Играть», и Пушок уже на гусеницах.</p>
-      <a class="btn" href="game/play.html">Играть бесплатно</a>
-      <a class="btn ghost" href="#worlds">Посмотреть миры</a>
+      <p>Аркада для Android: 12 миров, 120 уровней, 48 врагов и 12 боссов. Управление одним пальцем, короткие уровни, прокачка пушки и ракет.</p>
+      <a class="btn" href="#screens">Смотреть скриншоты</a>
+      <a class="btn ghost" href="#worlds">Миры игры</a>
     </div>
-    <div class="phone"><img src="img/phone-menu.png" alt="Экран игры Bubble Cannon"></div>
+    <div class="phone"><img src="img/phone-play.png" alt="Bubble Cannon: Пушок стреляет пузырями"></div>
   </div>
 
   <section id="pushok">
@@ -102,22 +109,31 @@
     <p class="sub">Главный герой — круглый пузырьковый танк на гусеницах. Стреляет мыльными пузырями, катится по мирам и собирает монеты на прокачку ствола.</p>
     <div class="herochar">
       <div class="art">
-        <img src="game/cannon_base.png" alt="Пушок — пузырьковая пушка">
+        <img src="art/cannon_base.png" alt="Пушок — пузырьковая пушка">
         <div class="skins">
-          <figure><img src="game/cannon_base.png" alt="Обычный Пушок"><figcaption>Обычный</figcaption></figure>
-          <figure><img src="game/cannon_base_blue.png" alt="Синий Пушок"><figcaption>Синий</figcaption></figure>
-          <figure><img src="game/cannon_base_red.png" alt="Красный Пушок"><figcaption>Красный</figcaption></figure>
+          <figure><img src="art/cannon_base.png" alt="Обычный Пушок"><figcaption>Обычный</figcaption></figure>
+          <figure><img src="art/cannon_base_blue.png" alt="Синий Пушок"><figcaption>Синий</figcaption></figure>
+          <figure><img src="art/cannon_base_red.png" alt="Красный Пушок"><figcaption>Красный</figcaption></figure>
         </div>
       </div>
       <div>
         <ul class="feat">
           <li>Стреляет мыльными пузырями — чем выше уровень, тем сильнее залп.</li>
           <li>Ездит на гусеницах: нажмите на самого Пушка, чтобы переехать без выстрела.</li>
-          <li>Три расцветки корпуса открываются по ходу игры.</li>
-          <li>Управление одним пальцем или мышью — без клавиатуры.</li>
+          <li>Мыло, ракеты и бутылки-бонусы прямо на поле боя.</li>
+          <li>Прокачка в магазине: скорострельность, размер и скорость пузырей, урон, ракеты.</li>
         </ul>
-        <p class="sub" style="margin:22px 0 0">Игра рассчитана на телефон: портретный экран, крупные кнопки. На компьютере она открывается в рамке телефона — так же удобно.</p>
       </div>
+    </div>
+  </section>
+
+  <section id="screens">
+    <h2>Скриншоты</h2>
+    <p class="sub">Так игра выглядит на телефоне — бой с боссом, магазин улучшений и ежедневный бонус.</p>
+    <div class="shots">
+      <figure><div class="phone"><img src="img/phone-play.png" alt="Бой с боссом"></div><figcaption>Бой с боссом</figcaption></figure>
+      <figure><div class="phone"><img src="img/phone-shop.png" alt="Магазин улучшений"></div><figcaption>Магазин улучшений</figcaption></figure>
+      <figure><div class="phone"><img src="img/phone-bonus.png" alt="Ежедневный бонус"></div><figcaption>Ежедневный бонус</figcaption></figure>
     </div>
   </section>
 
@@ -125,18 +141,18 @@
     <h2>12 миров</h2>
     <p class="sub">Каждый мир — свой фон, свои враги и свой босс. От лесной опушки до космоса и замка.</p>
     <div class="worlds">
-      <figure><img src="game/bg_les_day.jpg" alt="Лес"><figcaption>Лес</figcaption></figure>
-      <figure><img src="game/bg_peshera_1.jpg" alt="Пещеры"><figcaption>Пещеры</figcaption></figure>
-      <figure><img src="game/bg_lug_day.jpg" alt="Луг"><figcaption>Луг</figcaption></figure>
-      <figure><img src="game/bg_zima_day.jpg" alt="Зима"><figcaption>Зима</figcaption></figure>
-      <figure><img src="game/bg_vulkan_1.jpg" alt="Вулкан"><figcaption>Вулкан</figcaption></figure>
-      <figure><img src="game/bg_kosmos_day.jpg" alt="Космос"><figcaption>Космос</figcaption></figure>
-      <figure><img src="game/bg_zamok_day.jpg" alt="Замок"><figcaption>Замок</figcaption></figure>
-      <figure><img src="game/bg_podvoda_day.jpg" alt="Подводный мир"><figcaption>Подводный мир</figcaption></figure>
-      <figure><img src="game/bg_sladosti_day.jpg" alt="Сладости"><figcaption>Сладости</figcaption></figure>
-      <figure><img src="game/bg_pustynya_day.jpg" alt="Пустыня"><figcaption>Пустыня</figcaption></figure>
-      <figure><img src="game/bg_boloto_day.jpg" alt="Болото"><figcaption>Болото</figcaption></figure>
-      <figure><img src="game/bg_plyazh_day.jpg" alt="Пляж"><figcaption>Пляж</figcaption></figure>
+      <figure><img src="art/bg_les_day.jpg" alt="Лес"><figcaption>Лес</figcaption></figure>
+      <figure><img src="art/bg_peshera_1.jpg" alt="Пещеры"><figcaption>Пещеры</figcaption></figure>
+      <figure><img src="art/bg_lug_day.jpg" alt="Луг"><figcaption>Луг</figcaption></figure>
+      <figure><img src="art/bg_zima_day.jpg" alt="Зима"><figcaption>Зима</figcaption></figure>
+      <figure><img src="art/bg_vulkan_1.jpg" alt="Вулкан"><figcaption>Вулкан</figcaption></figure>
+      <figure><img src="art/bg_kosmos_day.jpg" alt="Космос"><figcaption>Космос</figcaption></figure>
+      <figure><img src="art/bg_zamok_day.jpg" alt="Замок"><figcaption>Замок</figcaption></figure>
+      <figure><img src="art/bg_podvoda_day.jpg" alt="Подводный мир"><figcaption>Подводный мир</figcaption></figure>
+      <figure><img src="art/bg_sladosti_day.jpg" alt="Сладости"><figcaption>Сладости</figcaption></figure>
+      <figure><img src="art/bg_pustynya_day.jpg" alt="Пустыня"><figcaption>Пустыня</figcaption></figure>
+      <figure><img src="art/bg_boloto_day.jpg" alt="Болото"><figcaption>Болото</figcaption></figure>
+      <figure><img src="art/bg_plyazh_day.jpg" alt="Пляж"><figcaption>Пляж</figcaption></figure>
     </div>
   </section>
 
@@ -144,50 +160,50 @@
     <h2>Враги</h2>
     <p class="sub">48 видов монстров — по четыре на мир. Вот кто встретится Пушку на пути.</p>
     <div class="foes">
-      <figure><img src="game/les_mosquito.png" alt="Москит"><figcaption>Москит</figcaption></figure>
-      <figure><img src="game/les_spider.png" alt="Паук"><figcaption>Паук</figcaption></figure>
-      <figure><img src="game/les_snake.png" alt="Змея"><figcaption>Змея</figcaption></figure>
-      <figure><img src="game/les_mushroom.png" alt="Гриб"><figcaption>Гриб</figcaption></figure>
-      <figure><img src="game/pesh_golem.png" alt="Голем"><figcaption>Голем</figcaption></figure>
-      <figure><img src="game/pesh_bat.png" alt="Летучая мышь"><figcaption>Мышь</figcaption></figure>
-      <figure><img src="game/pod_squid.png" alt="Кальмар"><figcaption>Кальмар</figcaption></figure>
-      <figure><img src="game/pod_shark.png" alt="Акула"><figcaption>Акула</figcaption></figure>
-      <figure><img src="game/zim_yeti.png" alt="Йети"><figcaption>Йети</figcaption></figure>
-      <figure><img src="game/vulk_spirit.png" alt="Дух вулкана"><figcaption>Дух вулкана</figcaption></figure>
-      <figure><img src="game/kos_alien.png" alt="Пришелец"><figcaption>Пришелец</figcaption></figure>
-      <figure><img src="game/zam_knight.png" alt="Рыцарь"><figcaption>Рыцарь</figcaption></figure>
-      <figure><img src="game/slad_cupcake.png" alt="Кекс"><figcaption>Кекс</figcaption></figure>
-      <figure><img src="game/pus_scorpion.png" alt="Скорпион"><figcaption>Скорпион</figcaption></figure>
-      <figure><img src="game/lug_bee.png" alt="Пчела"><figcaption>Пчела</figcaption></figure>
-      <figure><img src="game/pl_crab.png" alt="Краб"><figcaption>Краб</figcaption></figure>
-      <figure><img src="game/bol_frog.png" alt="Жаба"><figcaption>Жаба</figcaption></figure>
-      <figure><img src="game/bol_turtle.png" alt="Черепаха"><figcaption>Черепаха</figcaption></figure>
+      <figure><img src="art/les_mosquito.png" alt="Москит"><figcaption>Москит</figcaption></figure>
+      <figure><img src="art/les_spider.png" alt="Паук"><figcaption>Паук</figcaption></figure>
+      <figure><img src="art/les_snake.png" alt="Змея"><figcaption>Змея</figcaption></figure>
+      <figure><img src="art/les_mushroom.png" alt="Гриб"><figcaption>Гриб</figcaption></figure>
+      <figure><img src="art/pesh_golem.png" alt="Голем"><figcaption>Голем</figcaption></figure>
+      <figure><img src="art/pesh_bat.png" alt="Летучая мышь"><figcaption>Мышь</figcaption></figure>
+      <figure><img src="art/pod_squid.png" alt="Кальмар"><figcaption>Кальмар</figcaption></figure>
+      <figure><img src="art/pod_shark.png" alt="Акула"><figcaption>Акула</figcaption></figure>
+      <figure><img src="art/zim_yeti.png" alt="Йети"><figcaption>Йети</figcaption></figure>
+      <figure><img src="art/vulk_spirit.png" alt="Дух вулкана"><figcaption>Дух вулкана</figcaption></figure>
+      <figure><img src="art/kos_alien.png" alt="Пришелец"><figcaption>Пришелец</figcaption></figure>
+      <figure><img src="art/zam_knight.png" alt="Рыцарь"><figcaption>Рыцарь</figcaption></figure>
+      <figure><img src="art/slad_cupcake.png" alt="Кекс"><figcaption>Кекс</figcaption></figure>
+      <figure><img src="art/pus_scorpion.png" alt="Скорпион"><figcaption>Скорпион</figcaption></figure>
+      <figure><img src="art/lug_bee.png" alt="Пчела"><figcaption>Пчела</figcaption></figure>
+      <figure><img src="art/pl_crab.png" alt="Краб"><figcaption>Краб</figcaption></figure>
+      <figure><img src="art/bol_frog.png" alt="Жаба"><figcaption>Жаба</figcaption></figure>
+      <figure><img src="art/bol_turtle.png" alt="Черепаха"><figcaption>Черепаха</figcaption></figure>
     </div>
 
     <h2 style="margin-top:40px">Боссы</h2>
     <p class="sub">Финальный враг каждого мира — здоровенный и с характером.</p>
     <div class="foes bosses">
-      <figure><img src="game/les_boss.png" alt="Босс леса"><figcaption>Леший</figcaption></figure>
-      <figure><img src="game/pesh_boss.png" alt="Босс пещер"><figcaption>Пещерный</figcaption></figure>
-      <figure><img src="game/pod_boss.png" alt="Босс подводного мира"><figcaption>Глубинный</figcaption></figure>
-      <figure><img src="game/zim_boss.png" alt="Босс зимы"><figcaption>Ледяной</figcaption></figure>
-      <figure><img src="game/vulk_boss.png" alt="Босс вулкана"><figcaption>Вулкана</figcaption></figure>
-      <figure><img src="game/kos_boss.png" alt="Босс космоса"><figcaption>Космический</figcaption></figure>
-      <figure><img src="game/zam_boss.png" alt="Босс замка"><figcaption>Замковый</figcaption></figure>
-      <figure><img src="game/slad_boss.png" alt="Босс сладостей"><figcaption>Сладкий</figcaption></figure>
-      <figure><img src="game/pus_boss.png" alt="Босс пустыни"><figcaption>Пустынный</figcaption></figure>
-      <figure><img src="game/bol_boss.png" alt="Босс болота"><figcaption>Болотный</figcaption></figure>
-      <figure><img src="game/pl_boss.png" alt="Босс пляжа"><figcaption>Пляжный</figcaption></figure>
-      <figure><img src="game/lug_boss.png" alt="Босс луга"><figcaption>Луговой</figcaption></figure>
+      <figure><img src="art/les_boss.png" alt="Босс леса"><figcaption>Леший</figcaption></figure>
+      <figure><img src="art/pesh_boss.png" alt="Босс пещер"><figcaption>Пещерный</figcaption></figure>
+      <figure><img src="art/pod_boss.png" alt="Босс подводного мира"><figcaption>Глубинный</figcaption></figure>
+      <figure><img src="art/zim_boss.png" alt="Босс зимы"><figcaption>Ледяной</figcaption></figure>
+      <figure><img src="art/vulk_boss.png" alt="Босс вулкана"><figcaption>Вулкана</figcaption></figure>
+      <figure><img src="art/kos_boss.png" alt="Босс космоса"><figcaption>Космический</figcaption></figure>
+      <figure><img src="art/zam_boss.png" alt="Босс замка"><figcaption>Замковый</figcaption></figure>
+      <figure><img src="art/slad_boss.png" alt="Босс сладостей"><figcaption>Сладкий</figcaption></figure>
+      <figure><img src="art/pus_boss.png" alt="Босс пустыни"><figcaption>Пустынный</figcaption></figure>
+      <figure><img src="art/bol_boss.png" alt="Босс болота"><figcaption>Болотный</figcaption></figure>
+      <figure><img src="art/pl_boss.png" alt="Босс пляжа"><figcaption>Пляжный</figcaption></figure>
+      <figure><img src="art/lug_boss.png" alt="Босс луга"><figcaption>Луговой</figcaption></figure>
     </div>
   </section>
 
   <section>
     <h2>Как играть</h2>
     <div class="cards">
-      <div class="card"><b>1</b><span>Нажмите «Играть» — игра откроется сразу, без установки и регистрации.</span></div>
-      <div class="card"><b>2</b><span>Ведите мышью или пальцем по экрану — Пушок целится и стреляет пузырями.</span></div>
-      <div class="card"><b>3</b><span>Проходите уровни, копите монеты, покупайте прокачку пушки в магазине.</span></div>
+      <div class="card"><b>1</b><span>Установите игру на Android — скоро в RuStore.</span></div>
+      <div class="card"><b>2</b><span>Ведите пальцем по экрану — Пушок целится и стреляет пузырями.</span></div>
+      <div class="card"><b>3</b><span>Проходите уровни, копите монеты, покупайте прокачку в магазине.</span></div>
     </div>
   </section>
 
