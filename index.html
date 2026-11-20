@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bubble Cannon — пузырьковая пушка против монстров</title>
+<meta name="description" content="Bubble Cannon — аркадная игра: 12 миров, 120 уровней, боссы. Играй бесплатно прямо в браузере.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0d1117;--card:#161b22;--line:#30363d;--text:#e6edf3;--dim:#9aa7b4;--accent:#3fb6ff;--accent2:#ffd166}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ink);color:var(--text);font-family:'Nunito',system-ui,sans-serif;line-height:1.55}
+  a{color:var(--accent);text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  header{padding:26px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+  .logo{font-family:'Fredoka One',cursive;font-size:24px;letter-spacing:.5px}
+  .logo span{color:var(--accent)}
+  nav a{color:var(--dim);margin-left:22px;font-size:15px}
+  nav a:hover{color:var(--text)}
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:56px 0 40px}
+  .hero h1{font-family:'Fredoka One',cursive;font-size:54px;line-height:1.05;margin-bottom:16px}
+  .hero h1 em{font-style:normal;color:var(--accent2)}
+  .hero p{color:var(--dim);font-size:18px;margin-bottom:26px}
+  .btn{display:inline-block;background:var(--accent);color:#04121c;font-weight:700;font-size:19px;padding:15px 34px;border-radius:14px;transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);margin-left:10px;font-size:16px;padding:14px 24px}
+  .shot{border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.55)}
+  .shot img{display:block;width:100%;height:auto}
+  section{padding:44px 0;border-top:1px solid var(--line)}
+  h2{font-family:'Fredoka One',cursive;font-size:30px;margin-bottom:22px;font-weight:400}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .card b{font-family:'Fredoka One',cursive;font-size:30px;color:var(--accent);display:block}
+  .card span{color:var(--dim);font-size:15px}
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .gallery img{width:100%;display:block;border-radius:14px;border:1px solid var(--line)}
+  ul.feat{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px}
+  ul.feat li{color:var(--dim);padding-left:26px;position:relative}
+  ul.feat li::before{content:"●";color:var(--accent);position:absolute;left:0}
+  footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#6f7d8c;font-size:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  @media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:34px}.hero h1{font-size:40px}.cards{grid-template-columns:1fr}.gallery{grid-template-columns:1fr}ul.feat{grid-template-columns:1fr}nav{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">Bubble <span>Cannon</span></div>
+    <nav><a href="#about">Об игре</a><a href="#screens">Скриншоты</a><a href="game/index.html">Играть</a></nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>Пузырьковая пушка<br>против <em>монстров</em></h1>
+      <p>Аркада для телефона и браузера: стреляй пузырями, пробивайся через 12 миров и вали боссов. Без установки — игра запускается прямо на странице.</p>
+      <a class="btn" href="game/index.html">Играть бесплатно</a>
+      <a class="btn ghost" href="#about">Подробнее</a>
+    </div>
+    <div class="shot"><img src="img/hero.jpg" alt="Мир леса в Bubble Cannon"></div>
+  </div>
+
+  <section id="about">
+    <h2>Об игре</h2>
+    <ul class="feat">
+      <li>12 миров — от леса и пещер до космоса и замка</li>
+      <li>120 уровней с растущей сложностью</li>
+      <li>48 видов врагов и 12 боссов</li>
+      <li>Прокачка пушки и магазин улучшений</li>
+      <li>Управление одним пальцем или мышью</li>
+      <li>Работает в браузере на ПК и телефоне</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Как играть</h2>
+    <div class="cards">
+      <div class="card"><b>1</b><span>Нажми «Играть» — игра откроется на весь экран, ничего скачивать не нужно.</span></div>
+      <div class="card"><b>2</b><span>Целься мышью или пальцем и стреляй пузырями по врагам.</span></div>
+      <div class="card"><b>3</b><span>Проходи уровни, собирай монеты и открывай новые миры.</span></div>
+    </div>
+  </section>
+
+  <section id="screens">
+    <h2>Скриншоты</h2>
+    <div class="gallery">
+      <img src="img/world-sea.jpg" alt="Подводный мир">
+      <img src="img/world-volcano.jpg" alt="Вулканический мир">
+    </div>
+  </section>
+
+  <footer>
+    <div>Bubble Cannon · ИП Иванькова Светлана Валерьевна</div>
+    <div>© 2026 · Все права защищены</div>
+  </footer>
+</div>
+</body>
+</html>
